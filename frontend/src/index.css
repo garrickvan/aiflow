@@ -1,0 +1,1155 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+/* ============================================
+   JobTaskModal 样式 - 参考ui-job-editor.html
+   ============================================ */
+
+/* 弹窗基础样式 - 去除内边距，最大化视觉面积 */
+.job-task-modal .ant-modal-content {
+  padding: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.job-task-modal .ant-modal-body {
+  padding: 0;
+}
+
+/* 弹窗容器 */
+.job-modal-container {
+  display: flex;
+  flex-direction: column;
+  height: 95vh;
+  max-height: 950px;
+  background: #fff;
+}
+
+/* 头部 */
+.job-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: #fff;
+  border-bottom: 1px solid #f1f5f9;
+  flex-shrink: 0;
+}
+
+.job-header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.job-header-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eff6ff;
+  border: 1px solid #dbeafe;
+  border-radius: 12px;
+  font-size: 24px;
+  color: #3b82f6;
+}
+
+.job-header-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.job-header-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.job-header-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.job-jobno-input {
+  width: 200px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1e293b;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 0;
+  background: transparent;
+}
+
+.job-jobno-input:hover {
+  border-bottom-color: #e2e8f0;
+}
+
+.job-jobno-input:focus {
+  border-bottom-color: #3b82f6;
+  box-shadow: none;
+}
+
+.job-jobno-input.readonly {
+  cursor: default;
+}
+
+.job-status-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 500;
+  border: 1px solid;
+}
+
+.job-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.job-header-sub {
+  color: #64748b;
+  font-size: 13px;
+}
+
+.job-header-sub-icon {
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+.job-project-select {
+  width: 160px;
+}
+
+.job-project-select .ant-select-selector {
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.job-project-select .ant-select-selection-item {
+  color: #475569;
+  font-weight: 500;
+}
+
+.job-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.job-header-btn {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: #64748b;
+  transition: all 0.2s;
+  font-size: 13px;
+}
+
+.job-header-btn:hover {
+  background: #f1f5f9;
+  color: #334155;
+}
+
+.job-close-btn:hover {
+  background: #fef2f2;
+  color: #ef4444;
+}
+
+/* 主体内容 - 左右分栏 */
+.job-modal-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  background: #f8fafc;
+}
+
+/* 左侧面板 */
+.job-modal-left-panel {
+  width: 320px;
+  background: #fff;
+  border-right: 1px solid #f1f5f9;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+.job-modal-left-panel.hidden {
+  display: none;
+}
+
+.job-modal-panel-content {
+  padding: 20px;
+}
+
+/* 表单区块 */
+.job-form-section {
+  margin-bottom: 00px;
+}
+
+.job-form-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.job-form-label-between {
+  justify-content: space-between;
+}
+
+.job-form-icon {
+  font-size: 12px;
+}
+
+/* 类型选择 */
+.job-type-select {
+  width: 100%;
+}
+
+.job-type-select .ant-select-selector {
+  height: 34px !important;
+  border-radius: 6px !important;
+  border-color: #e2e8f0 !important;
+  background: #f8fafc !important;
+}
+
+.job-type-select .ant-select-selection-item {
+  line-height: 32px !important;
+  font-weight: 500;
+  color: #334155;
+  font-size: 13px;
+}
+
+.job-select-arrow {
+  color: #94a3b8;
+}
+
+/* 状态网格 */
+.job-status-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px;
+}
+
+.job-status-btn {
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  text-align: center;
+  border: 1px solid;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.job-status-btn:hover {
+  transform: translateY(-1px);
+}
+
+/* 状态行容器 - 下拉框和复选框同行 */
+.job-status-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.job-status-row .job-status-select {
+  flex: 1;
+}
+
+/* 验收复选框 */
+.job-accept-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex: 1;
+}
+
+/* 未选中状态 - 变灰 */
+.job-accept-checkbox.unchecked {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+.job-accept-checkbox:hover {
+  background: #ecfdf5;
+}
+
+.job-accept-checkbox.unchecked:hover {
+  background: #f1f5f9;
+}
+
+.job-checkbox-input {
+  width: 14px;
+  height: 14px;
+  accent-color: #10b981;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.job-checkbox-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: #15803d;
+}
+
+/* 未选中状态文字变灰 */
+.job-accept-checkbox.unchecked .job-checkbox-text {
+  color: #64748b;
+}
+
+.job-checkbox-icon {
+  color: #22c55e;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+/* 未选中状态图标变灰 */
+.job-accept-checkbox.unchecked .job-checkbox-icon {
+  color: #94a3b8;
+}
+
+/* 字符计数 */
+.job-char-count {
+  font-size: 11px;
+  color: #94a3b8;
+  background: #f1f5f9;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.job-char-count.exceeded {
+  color: #dc2626;
+  background: #fef2f2;
+}
+
+/* 文本域 */
+.job-goal-textarea {
+  border-radius: 10px !important;
+  border-color: #e2e8f0 !important;
+  background: #f8fafc !important;
+  resize: none !important;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.job-goal-textarea:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+}
+
+/* 模块输入 */
+.job-module-input {
+  border-radius: 10px !important;
+  border-color: #e2e8f0 !important;
+  background: #f8fafc !important;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+
+/* 元信息 */
+.job-meta-section {
+  padding-top: 16px;
+  border-top: 1px solid #f1f5f9;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.job-meta-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+}
+
+.job-meta-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #64748b;
+}
+
+.job-meta-value {
+  font-family: 'JetBrains Mono', monospace;
+  color: #475569;
+  background: #f1f5f9;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+}
+
+.job-meta-highlight {
+  color: #3b82f6;
+  background: #eff6ff;
+  border: 1px solid #dbeafe;
+}
+
+/* 右侧面板 */
+.job-modal-right-panel {
+  flex: 1;
+  overflow-y: auto;
+  background: #fff;
+}
+
+.job-modal-right-panel.full {
+  padding: 20px 32px;
+}
+
+/* 时间轴头部 */
+.job-timeline-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding: 8px;
+  border-bottom: 1px solid #f1f5f9;
+  position: sticky;
+  top: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 10;
+}
+
+.job-timeline-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.job-timeline-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eff6ff;
+  border-radius: 10px;
+  color: #3b82f6;
+  font-size: 20px;
+}
+
+.job-timeline-title h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.job-timeline-title p {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: #64748b;
+}
+
+.job-add-btn {
+  border-radius: 10px;
+  height: 38px;
+  padding: 0 16px;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+}
+
+/* 时间轴容器 */
+.job-timeline-container {
+  position: relative;
+  padding-left: 16px;
+  margin-right: 10px;
+}
+
+.job-timeline-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  color: #94a3b8;
+}
+
+.job-empty-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+/* 时间轴项 */
+.job-timeline-item {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.job-timeline-line {
+  position: absolute;
+  left: 0;
+  top: 33px;
+  bottom: -16px;
+  width: 2px;
+  background: #e2e8f0;
+  border-radius: 1px;
+}
+
+.job-timeline-item.active .job-timeline-line {
+  background: linear-gradient(to bottom, #3b82f6, #06b6d4);
+}
+
+.job-timeline-dot {
+  position: absolute;
+  left: -5px;
+  top: 28px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #cbd5e1;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  z-index: 2;
+  transition: all 0.2s;
+}
+
+.job-timeline-dot:hover {
+  background: #f59e0b;
+  transform: scale(1.2);
+}
+
+.job-timeline-dot.active {
+  width: 10px;
+  height: 10px;
+  left: -5px;
+  background: #3b82f6;
+  border-width: 2px;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* 时间轴卡片 */
+.job-timeline-card {
+  margin-left: 16px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.job-timeline-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.job-timeline-card.active {
+  border-color: #bfdbfe;
+  border-width: 2px;
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.15);
+  position: relative;
+}
+
+.job-timeline-card.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: #3b82f6;
+}
+
+/* 卡片头部 */
+.job-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+}
+
+.job-card-header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.job-sequence-badge {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  position: relative;
+}
+
+.job-sequence-badge.active {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+  color: #3b82f6;
+}
+
+.job-active-indicator {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 14px;
+  height: 14px;
+  background: #8b5cf6;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  color: #fff;
+}
+
+.job-card-info {
+  flex: 1;
+}
+
+.job-card-tags {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+
+.job-status-tag {
+  padding: 3px 100px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  border: 1px solid;
+}
+
+.job-active-tag {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 500;
+  color: #8b5cf6;
+  background: #faf5ff;
+  border: 1px solid #e9d5ff;
+}
+
+.job-time-tag {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 10px;
+  color: #94a3b8;
+}
+
+.job-card-title {
+  margin: 0;
+  font-size: 12px;
+  color: #334155;
+  font-weight: 500;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.job-card-chevron {
+  font-size: 14px;
+  color: #94a3b8;
+  transition: transform 0.3s;
+}
+
+.job-card-chevron.expanded {
+  transform: rotate(180deg);
+}
+
+/* 卡片内容 */
+.job-card-content {
+  padding: 0 16px 16px;
+  border-top: 1px solid #f1f5f9;
+  background: #fafafa;
+}
+
+.job-card-section {
+  margin-top: 12px;
+}
+
+.job-card-section-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 8px;
+}
+
+.job-code-block {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border: 1px solid #3b82f6;
+  border-radius: 10px;
+  padding: 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: #334155;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.job-solution-block {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 12px;
+  color: #166534;
+  line-height: 1.6;
+}
+
+.job-file-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.job-file-tag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 11px;
+  color: #475569;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.job-file-tag:hover {
+  border-color: #3b82f6;
+  transform: translateX(2px);
+}
+
+.job-file-icon {
+  color: #3b82f6;
+  font-size: 14px;
+}
+
+.job-file-name {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.job-skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.job-skill-tag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 8px;
+  font-size: 11px;
+  color: #0369a1;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.job-skill-tag:hover {
+  border-color: #3b82f6;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+}
+
+.job-skill-name {
+  font-weight: 500;
+}
+
+.job-accept-block {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+}
+
+.job-accept-block.passed {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+}
+
+.job-accept-indicator {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  border: 2px solid #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.job-accept-block.passed .job-accept-indicator {
+  background: #22c55e;
+  border-color: #22c55e;
+  color: #fff;
+  font-size: 12px;
+}
+
+.job-accept-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #94a3b8;
+}
+
+.job-accept-block p {
+  margin: 0;
+  font-size: 12px;
+  color: #475569;
+  line-height: 1.5;
+}
+
+.job-accept-block.passed p {
+  color: #166534;
+}
+
+/* 底部操作栏 */
+.job-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 12px 20px;
+  background: #fff;
+  border-top: 1px solid #f1f5f9;
+  flex-shrink: 0;
+}
+
+.job-shortcut-hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #64748b;
+  background: #f8fafc;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.job-kbd {
+  font-family: 'JetBrains Mono', monospace;
+  background: #fff;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid #cbd5e1;
+  font-size: 11px;
+  color: #475569;
+}
+
+.job-divider {
+  color: #cbd5e1;
+}
+
+.job-footer-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.job-cancel-btn {
+  height: 40px;
+  padding: 0 24px;
+  border-radius: 10px;
+  font-weight: 500;
+  color: #64748b;
+  border-color: transparent;
+}
+
+.job-cancel-btn:hover {
+  color: #334155;
+  background: #f1f5f9;
+  border-color: #e2e8f0;
+}
+
+.job-save-btn {
+  height: 32px;
+  padding: 0 20px;
+  border-radius: 6px;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+  font-size: 13px;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  /* 弹窗高度调整 */
+  .job-task-modal .ant-modal-content {
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+  }
+
+  .job-modal-container {
+    height: 100vh;
+    max-height: 100vh;
+  }
+
+  /* 头部固定 */
+  .job-modal-header {
+    flex-shrink: 0;
+    padding: 10px 16px;
+  }
+
+  /* 主体内容区域支持滚动 */
+  .job-modal-body {
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* 左侧面板全宽 */
+  .job-modal-left-panel {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #f1f5f9;
+    flex-shrink: 0;
+  }
+
+  .job-modal-panel-content {
+    padding: 16px;
+  }
+
+  /* 右侧面板 */
+  .job-modal-right-panel {
+    flex: none;
+    min-height: 300px;
+    flex-shrink: 0;
+  }
+
+  .job-modal-right-panel.full {
+    padding: 16px;
+  }
+
+  /* 时间轴头部 */
+  .job-timeline-header {
+    padding: 12px;
+    margin-bottom: 16px;
+  }
+
+  /* 时间轴容器 */
+  .job-timeline-container {
+    padding-left: 12px;
+  }
+
+  /* 底部固定 */
+  .job-modal-footer {
+    flex-shrink: 0;
+    padding: 10px 16px;
+  }
+
+  /* 头部元素调整 */
+  .job-header-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .job-jobno-display {
+    font-size: 14px;
+  }
+}
+
+/* 超小屏幕额外优化 */
+@media (max-width: 480px) {
+  .job-task-modal .ant-modal-content {
+    height: 100vh;
+  }
+
+  .job-modal-header {
+    padding: 8px 12px;
+  }
+
+  .job-header-left {
+    gap: 10px;
+  }
+
+  .job-header-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+    border-radius: 8px;
+  }
+
+  .job-modal-panel-content {
+    padding: 12px;
+  }
+
+  .job-form-section {
+    margin-bottom: 16px;
+  }
+
+  .job-status-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .job-timeline-card {
+    margin-left: 12px;
+  }
+
+  .job-card-header {
+    padding: 10px;
+  }
+
+  .job-card-header-left {
+    gap: 10px;
+  }
+
+  .job-sequence-badge {
+    width: 28px;
+    height: 28px;
+    font-size: 11px;
+  }
+
+  .job-card-tags {
+    gap: 4px;
+  }
+
+  .job-status-tag {
+    padding: 2px 6px;
+    font-size: 10px;
+  }
+
+  .job-skill-tag {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+
+  .job-modal-footer {
+    padding: 8px 12px;
+  }
+
+  .job-save-btn,
+  .job-cancel-btn {
+    height: 36px;
+    padding: 0 16px;
+  }
+}

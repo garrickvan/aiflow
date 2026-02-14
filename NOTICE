@@ -1,0 +1,20 @@
+# NOTICE
+
+This project includes software from various sources. For details on third-party dependencies, please refer to the respective package managers:
+
+## Backend Dependencies
+
+- Go standard library
+- github.com/go-chi/chi - MIT License
+- github.com/mark3labs/mcp-go - MIT License
+
+## Frontend Dependencies
+
+- React - MIT License
+- TypeScript - Apache License 2.0
+- Vite - MIT License
+- Yarn - BSD License
+
+For complete dependency information, please refer to:
+- `go.mod` and `go.sum` for backend dependencies
+- `package.json` and `yarn.lock` for frontend dependencies

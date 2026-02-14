@@ -1,0 +1,20 @@
+# MCP HTTP服务器配置
+server:
+  # HTTP服务器监听地址
+  addr: "localhost:9900"
+  # MCP服务器名称
+  name: "智流"
+  # MCP服务器版本
+  version: "0.2.0"
+  # 路由配置
+  root_path: "/"
+  mcp_path: "/mcp"
+  web_path: "/web"
+
+log:
+  # 日志等级，可选值：debug、info、warn、error
+  level: "debug"
+  # 日志输出形式，可选值：std（标准输出）、file（文件输出）
+  output_type: "std"
+  # 当output_type为file时，指定日志文件夹路径，日志文件名为main.log
+  file_path: "./logs"

@@ -1,0 +1,31 @@
+# 开发依赖和配置文件
+.vscode/
+.vscode-test/
+.yarn/
+.yarnrc.yml
+
+# 源代码和TypeScript配置
+src/
+tsconfig.json
+
+# 测试文件
+**/*.test.ts
+**/*.spec.ts
+out/test/
+
+# 日志文件
+*.log
+
+# 版本控制
+.git/
+.gitignore
+
+# 其他
+node_modules/.cache/
+*.map
+
+# 脚本和开发工具
+scripts/
+
+# 保留SVG源文件，但插件使用PNG
+resources/icon.svg
