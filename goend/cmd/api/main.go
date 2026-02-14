@@ -22,7 +22,7 @@ import (
 // todo: 提供zip包导入skill能力
 // todo: 提供skill基准目录注入，确保脚本能正常运行
 // todo: 添加平台参数，细化跟踪信息
-// todo: 编号生成先大写处理
+// todo: 编号生成，先大写处理英文
 
 var (
 	// httpAddr 定义HTTP服务器监听地址

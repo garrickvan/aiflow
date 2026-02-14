@@ -5,7 +5,7 @@ server:
   # MCP服务器名称
   name: "智流"
   # MCP服务器版本
-  version: "0.2.0"
+  version: "0.5.0"
   # 路由配置
   root_path: "/"
   mcp_path: "/mcp"
